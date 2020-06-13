@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/homeScreen">
+
+    <fragment
+        android:id="@+id/homeScreen"
+        android:name="com.dsckiet.zomatoclone.view.HomeScreen"
+        android:label="fragment_home_screen"
+        tools:layout="@layout/fragment_home_screen" >
+        <action
+            android:id="@+id/action_homeScreen_to_locationSearch"
+            app:destination="@id/locationSearch" />
+    </fragment>
+    <fragment
+        android:id="@+id/locationSearch"
+        android:name="com.dsckiet.zomatoclone.view.LocationSearch"
+        android:label="fragment_location_search"
+        tools:layout="@layout/fragment_location_search" />
+</navigation>
