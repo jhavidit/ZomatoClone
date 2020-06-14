@@ -5,11 +5,12 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import com.dsckiet.zomatoclone.model.LocationDetails
 import com.dsckiet.zomatoclone.model.Restaurant
+import com.dsckiet.zomatoclone.models.restaurant
 import com.dsckiet.zomatoclone.repository.HomeScreenRepository
 
 class HomeScreenViewModel(application: Application) : AndroidViewModel(application) {
     val showProgess: LiveData<Boolean>
-    val showRestaurant: LiveData<Restaurant>
+    val showRestaurant: LiveData<List<restaurant>>
     val repository = HomeScreenRepository(application)
 
     init {

@@ -106,9 +106,9 @@ class MainActivity : AppCompatActivity() {
                 progressBar.visibility = GONE
         })
         viewModelHome.getRestaurantDetails(23, "city")
-//        viewModelHome.showRestaurant.observe(this, Observer {
-//            adapter.getLocationData(it)
-//        })
+        viewModelHome.showRestaurant.observe(this, Observer {
+            adapter.getLocationData(it)
+        })
     }
 
     private fun isLocationEnabled(): Boolean {

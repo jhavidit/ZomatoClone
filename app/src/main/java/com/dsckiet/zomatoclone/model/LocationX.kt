@@ -1,8 +1,11 @@
 package com.dsckiet.zomatoclone.model
 
 
+import android.os.Parcelable
 import com.squareup.moshi.Json
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class LocationX(
     @Json(name = "city_id")
     val cityId: Int,
@@ -19,4 +22,4 @@ data class LocationX(
     val latitude: Double,
     val longitude: Double,
     val title: String
-)
+): Parcelable

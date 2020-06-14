@@ -11,14 +11,15 @@ import com.dsckiet.zomatoclone.R
 import com.dsckiet.zomatoclone.model.BestRatedRestaurant
 import com.dsckiet.zomatoclone.model.LocationDetails
 import com.dsckiet.zomatoclone.model.Restaurant
+import com.dsckiet.zomatoclone.models.restaurant
 import kotlinx.android.synthetic.main.restaurant_cell.view.*
 
 
 class HomeScreenAdapter(private val context: Context) :
     RecyclerView.Adapter<HomeScreenAdapter.ViewHolder>() {
-    var list: List<Restaurant> = ArrayList()
+    var list: List<restaurant> = ArrayList()
 
-    fun getLocationData(list: List<Restaurant>) {
+    fun getLocationData(list: List<restaurant>) {
         this.list = list
         notifyDataSetChanged()
     }
@@ -40,7 +41,7 @@ class HomeScreenAdapter(private val context: Context) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = list[position]
 
-        holder.restaurantName.text = item.name
+        holder.restaurantName.text = item.restaurant.name
     }
 
 
