@@ -4,6 +4,7 @@ package com.dsckiet.zomatoclone.api
 import com.dsckiet.zomatoclone.model.LocationDetails
 import com.dsckiet.zomatoclone.model.LocationSearchItem
 import com.dsckiet.zomatoclone.model.Restaurant
+import com.dsckiet.zomatoclone.models.ModelLocation
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Header
@@ -26,12 +27,10 @@ interface ZomatoNetworkInterface {
 
     @GET("location_details")
 
-//    @Headers("user-key: f5cd87e4deca15ff2a49d74ce3328e1b")
     fun getLocationDetails(
-//        @Header("user-key") apiKey: String,
         @Query("entity_id") entityId: Int,
         @Query("entity_type") entityType: String
 
-    ): Call<LocationDetails>
+    ): Call<ModelLocation>
 
 }

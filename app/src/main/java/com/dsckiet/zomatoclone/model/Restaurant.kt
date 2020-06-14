@@ -1,9 +1,14 @@
 package com.dsckiet.zomatoclone.model
 
 
+import android.os.Parcelable
 import com.squareup.moshi.Json
+import kotlinx.android.parcel.Parcelize
+import kotlinx.android.parcel.RawValue
+import org.checkerframework.checker.nullness.qual.Raw
 import java.io.Serializable
 
+@Parcelize
 data class Restaurant(
     @Json(name = "all_reviews")
     val allReviews: AllReviews,
@@ -46,7 +51,7 @@ data class Restaurant(
     @Json(name = "mezzo_provider")
     val mezzoProvider: String,
     val name: String,
-    val offers: List<Any>,
+    val offers: @RawValue List<Any>,
     @Json(name = "opentable_support")
     val opentableSupport: Int,
     @Json(name = "order_deeplink")
@@ -72,4 +77,4 @@ data class Restaurant(
     val url: String,
     @Json(name = "user_rating")
     val userRating: UserRating
-):Serializable
+):Parcelable

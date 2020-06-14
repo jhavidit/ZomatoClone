@@ -1,8 +1,11 @@
 package com.dsckiet.zomatoclone.model
 
 
+import android.os.Parcelable
 import com.squareup.moshi.Json
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class UserRating(
     @Json(name = "aggregate_rating")
     val aggregateRating: String,
@@ -13,4 +16,4 @@ data class UserRating(
     @Json(name = "rating_text")
     val ratingText: String,
     val votes: String
-)
+): Parcelable
