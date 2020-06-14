@@ -21,8 +21,8 @@
 
             <ImageView
                 android:id="@+id/place_image"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_margin="4dp"
                 android:src="@drawable/ic__place" />
 
@@ -34,7 +34,7 @@
                 android:layout_toRightOf="@id/place_image"
                 android:gravity="center_vertical"
                 android:textColor="#FFFFFF"
-                android:textSize="30sp" />
+                android:textSize="25sp" />
 
 
         </RelativeLayout>

@@ -1,16 +1,16 @@
 package com.dsckiet.zomatoclone.adapter
 
 import android.content.Context
+import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.dsckiet.zomatoclone.R
-import com.dsckiet.zomatoclone.model.BestRatedRestaurant
-import com.dsckiet.zomatoclone.model.LocationDetails
-import com.dsckiet.zomatoclone.model.Restaurant
 import com.dsckiet.zomatoclone.models.restaurant
 import kotlinx.android.synthetic.main.restaurant_cell.view.*
 
@@ -42,17 +42,29 @@ class HomeScreenAdapter(private val context: Context) :
         val item = list[position]
 
         holder.restaurantName.text = item.restaurant.name
+        holder.restaurantFoodType.text = item.restaurant.cuisines
+        holder.restaurantFoodPrice.text = item.restaurant.currency +" "+item.restaurant.averageCostForTwo.toString()+" for two people"
+        holder.restaurantRating.text = item.restaurant.userRating.aggregateRating
+        var imageUrl = item.restaurant.thumb
+        var rating_color="#"+item.restaurant.userRating.ratingColor
+        holder.restaurantRating.setBackgroundColor(Color.parseColor(rating_color))
+
+        Log.i("image", imageUrl)
+        Glide.with(context)
+            .load(imageUrl)
+            .into(holder.restaurantImage)
     }
 
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+
         val restaurantRating: TextView = view.restaurant_rating
         val restaurantImage: ImageView = view.restaurant_image
         val restaurantName: TextView = view.restaurant_name
         val restaurantFoodType: TextView = view.restaurant_food_type
         val restaurantFoodPrice: TextView = view.restaurant_food_price
         val restaurantFoodOffer: TextView = view.restaurant_food_offer
-        val restaurantClosingAlert: TextView = view.restaurant_closing_alert
+
     }
 
 }

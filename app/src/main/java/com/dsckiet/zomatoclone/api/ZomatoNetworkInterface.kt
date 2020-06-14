@@ -2,9 +2,12 @@ package com.dsckiet.zomatoclone.api
 
 //import com.dsckiet.zomatoclone.model.CitySearchData
 import com.dsckiet.zomatoclone.model.LocationDetails
+import com.dsckiet.zomatoclone.model.LocationSearch
 import com.dsckiet.zomatoclone.model.LocationSearchItem
 import com.dsckiet.zomatoclone.model.Restaurant
+import com.dsckiet.zomatoclone.models.ModelCurrentLocation
 import com.dsckiet.zomatoclone.models.ModelLocation
+import com.dsckiet.zomatoclone.models.ModelLocationData
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Header
@@ -22,8 +25,8 @@ interface ZomatoNetworkInterface {
 //    @Headers("user-key: f5cd87e4deca15ff2a49d74ce3328e1b")
     fun getCityByCord(
         @Query("lat") latitude: Double,
-        @Query("long") longitude: Double
-    ): Call<LocationSearchItem>
+        @Query("lon") longitude: Double
+    ): Call<ModelLocationData>
 
     @GET("location_details")
 
