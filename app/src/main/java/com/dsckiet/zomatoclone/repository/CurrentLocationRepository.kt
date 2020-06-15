@@ -4,9 +4,6 @@ import android.app.Application
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import com.dsckiet.zomatoclone.api.ZomatoNetworkClient
-import com.dsckiet.zomatoclone.model.LocationSearch
-import com.dsckiet.zomatoclone.model.LocationSearchItem
-import com.dsckiet.zomatoclone.models.ModelCurrentLocation
 import com.dsckiet.zomatoclone.models.ModelLocationData
 import retrofit2.Call
 import retrofit2.Callback
@@ -17,9 +14,13 @@ class CurrentLocationRepository(val application: Application) {
     fun getCurrentLocation(lat: Double, lon: Double) {
         val retrofitService = ZomatoNetworkClient.getClient()
         val callApi = retrofitService.getCityByCord(lat, lon)
-        callApi.enqueue(object :Callback<ModelLocationData> {
+        callApi.enqueue(object : Callback<ModelLocationData> {
             override fun onFailure(call: Call<ModelLocationData>, t: Throwable) {
-                Toast.makeText(application,"Couldn't Detect Your Location because ${t.message}",Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    application,
+                    "Couldn't Detect Your Location because ${t.message}",
+                    Toast.LENGTH_SHORT
+                ).show()
 
             }
 
@@ -28,7 +29,7 @@ class CurrentLocationRepository(val application: Application) {
                 call: Call<ModelLocationData>,
                 response: Response<ModelLocationData>
             ) {
-                currentLocation.value=response.body()
+                currentLocation.value = response.body()
             }
 
         })

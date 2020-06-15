@@ -31,18 +31,16 @@ import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.location_cell.*
-import okhttp3.internal.notifyAll
 
 class MainActivity : AppCompatActivity() {
     private lateinit var mFusedLocationClient: FusedLocationProviderClient
     private lateinit var viewModel: CurrentLocationViewModel
-    private lateinit var viewModelHome:HomeScreenViewModel
+    private lateinit var viewModelHome: HomeScreenViewModel
     private lateinit var adapter: HomeScreenAdapter
     private var latitude: Double = 0.0
     private var longitude: Double = 0.0
-    private var entity_id:Int=0
-    private  var enity_type:String="city"
+    private var entity_id: Int = 0
+    private var enity_type: String = "city"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -97,7 +95,6 @@ class MainActivity : AppCompatActivity() {
                 .check()
             // END
         }
-
 
 
 //        adapter = HomeScreenAdapter(this)
@@ -162,36 +159,36 @@ class MainActivity : AppCompatActivity() {
             latitude = mLastLocation.latitude
             Log.i("Current Latitude", "$latitude")
 
-             longitude = mLastLocation.longitude
+            longitude = mLastLocation.longitude
             Log.i("Current Longitude", "$longitude")
-           getCurrentLocation(latitude,longitude)
+            getCurrentLocation(latitude, longitude)
         }
     }
 
-    private fun getCurrentLocation(latitude:Double,longitude:Double) {
+    private fun getCurrentLocation(latitude: Double, longitude: Double) {
         if (Constants.isNetworkAvailable(this@MainActivity)) {
-            viewModel.getCurrentLocation(latitude,longitude)
+            viewModel.getCurrentLocation(latitude, longitude)
             viewModel.currentLocation.observe(this, Observer {
-                location_name.text=it.locationSuggestions[0].name
-                entity_id=it.locationSuggestions[0].id
-getRestaurantDetails(entity_id,enity_type)
+                location_name.text = it.locationSuggestions[0].name
+                entity_id = it.locationSuggestions[0].id
+                getRestaurantDetails(entity_id, enity_type)
             })
         } else
             Toast.makeText(this, "Internet Unavailable", Toast.LENGTH_SHORT).show()
     }
-    fun getRestaurantDetails(entityId:Int,entityType:String)
-    {
+
+    fun getRestaurantDetails(entityId: Int, entityType: String) {
 
         adapter = HomeScreenAdapter(this)
         rv_home.adapter = adapter
 
-        viewModelHome.showProgess.observe(this, Observer {
+        viewModelHome.showProgress.observe(this, Observer {
             if (it)
                 progressBar.visibility = VISIBLE
             else
                 progressBar.visibility = GONE
         })
-        viewModelHome.getRestaurantDetails(entityId, entityType )
+        viewModelHome.getRestaurantDetails(entityId, entityType)
         viewModelHome.showRestaurant.observe(this, Observer {
             adapter.getLocationData(it)
         })

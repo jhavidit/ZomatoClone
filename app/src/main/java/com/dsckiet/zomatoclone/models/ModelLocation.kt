@@ -1,8 +1,6 @@
 package com.dsckiet.zomatoclone.models
 
 import android.os.Parcelable
-import com.dsckiet.zomatoclone.model.RatingObj
-import com.dsckiet.zomatoclone.model.UserRating
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.Parcelize
@@ -38,8 +36,6 @@ data class UserRating(
     val aggregateRating: String,
     @Json(name = "rating_color")
     val ratingColor: String,
-    @Json(name = "rating_obj")
-    val ratingObj: RatingObj,
     @Json(name = "rating_text")
     val ratingText: String,
     val votes: String

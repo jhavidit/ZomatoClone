@@ -63,7 +63,7 @@ class HomeScreenAdapter(private val context: Context) :
         val restaurantName: TextView = view.restaurant_name
         val restaurantFoodType: TextView = view.restaurant_food_type
         val restaurantFoodPrice: TextView = view.restaurant_food_price
-        val restaurantFoodOffer: TextView = view.restaurant_food_offer
+
 
     }
 
