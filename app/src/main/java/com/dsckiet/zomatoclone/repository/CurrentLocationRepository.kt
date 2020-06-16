@@ -30,6 +30,7 @@ class CurrentLocationRepository(val application: Application) {
                 response: Response<ModelLocationData>
             ) {
                 currentLocation.value = response.body()
+
             }
 
         })

@@ -12,8 +12,6 @@ import android.os.Bundle
 import android.os.Looper
 import android.provider.Settings
 import android.util.Log
-import android.view.View.GONE
-import android.view.View.VISIBLE
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -39,8 +37,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var adapter: HomeScreenAdapter
     private var latitude: Double = 0.0
     private var longitude: Double = 0.0
-    private var entity_id: Int = 0
-    private var enity_type: String = "city"
+     var entity_id: Int = 0
+     var enity_type: String = "city"
+    var homeScreen=HomeScreen()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -171,28 +170,17 @@ class MainActivity : AppCompatActivity() {
             viewModel.currentLocation.observe(this, Observer {
                 location_name.text = it.locationSuggestions[0].name
                 entity_id = it.locationSuggestions[0].id
-                getRestaurantDetails(entity_id, enity_type)
-            })
+
+                val bundle = Bundle()
+                bundle.putInt("entityId", entity_id)
+                val fragobj = HomeScreen()
+                fragobj.arguments = bundle
+//            homeScreen.getRestaurantDetails(entity_id, enity_type)
+          })
         } else
             Toast.makeText(this, "Internet Unavailable", Toast.LENGTH_SHORT).show()
     }
 
-    fun getRestaurantDetails(entityId: Int, entityType: String) {
-
-        adapter = HomeScreenAdapter(this)
-        rv_home.adapter = adapter
-
-        viewModelHome.showProgress.observe(this, Observer {
-            if (it)
-                progressBar.visibility = VISIBLE
-            else
-                progressBar.visibility = GONE
-        })
-        viewModelHome.getRestaurantDetails(entityId, entityType)
-        viewModelHome.showRestaurant.observe(this, Observer {
-            adapter.getLocationData(it)
-        })
-    }
 
 
 }
