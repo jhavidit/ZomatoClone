@@ -1,20 +1,18 @@
 package com.dsckiet.zomatoclone.api
 
-//import com.dsckiet.zomatoclone.model.CitySearchData
 
+import com.dsckiet.zomatoclone.models.LocationSearch
 import com.dsckiet.zomatoclone.models.ModelLocation
 import com.dsckiet.zomatoclone.models.ModelLocationData
 import retrofit2.Call
 import retrofit2.http.GET
-import retrofit2.http.Header
 import retrofit2.http.Query
 
 interface ZomatoNetworkInterface {
-//   @GET("cities")
-//    fun getCityByName(
-//        @Header("user-key") apiKey: String,
-//        @Query("q") cityName: String
-//    ): Call<List<LocationSearchItem>>
+    @GET("cities")
+    fun getCityByName(
+        @Query("q") cityName: String
+    ): Call<LocationSearch>
 
     @GET("cities")
     fun getCityByCord(

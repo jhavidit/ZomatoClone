@@ -13,10 +13,31 @@
         <action
             android:id="@+id/action_homeScreen_to_locationSearch"
             app:destination="@id/locationSearch" />
+        <action
+            android:id="@+id/action_homeScreen_to_restaurantDetails"
+            app:destination="@id/restaurantDetails" />
     </fragment>
     <fragment
         android:id="@+id/locationSearch"
         android:name="com.dsckiet.zomatoclone.view.LocationSearch"
         android:label="fragment_location_search"
-        tools:layout="@layout/fragment_location_search" />
+        tools:layout="@layout/fragment_location_search" >
+        <action
+            android:id="@+id/action_locationSearch_to_homeScreen"
+            app:destination="@id/homeScreen" />
+    </fragment>
+    <fragment
+        android:id="@+id/restaurantDetails"
+        android:name="com.dsckiet.zomatoclone.view.RestaurantDetails"
+        android:label="fragment_restaurant_details"
+        tools:layout="@layout/fragment_restaurant_details" >
+        <action
+            android:id="@+id/action_restaurantDetails_to_webFragment"
+            app:destination="@id/webFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/webFragment"
+        android:name="com.dsckiet.zomatoclone.view.WebFragment"
+        android:label="fragment_web"
+        tools:layout="@layout/fragment_web" />
 </navigation>

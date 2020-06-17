@@ -28,18 +28,19 @@ import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionRequest
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_home_screen.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var mFusedLocationClient: FusedLocationProviderClient
     private lateinit var viewModel: CurrentLocationViewModel
     private lateinit var viewModelHome: HomeScreenViewModel
     private lateinit var adapter: HomeScreenAdapter
-    private var latitude: Double = 0.0
-    private var longitude: Double = 0.0
-     var entity_id: Int = 0
-     var enity_type: String = "city"
-    var homeScreen=HomeScreen()
+     var latitude: Double = 0.0
+     var longitude: Double = 0.0
+    var entity_id: Int = -1
+
+    var enity_type: String = "city"
+    var homeScreen = HomeScreen()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -96,19 +97,8 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-//        adapter = HomeScreenAdapter(this)
-//        rv_home.adapter = adapter
-//
-//        viewModelHome.showProgess.observe(this, Observer {
-//            if (it)
-//                progressBar.visibility = VISIBLE
-//            else
-//                progressBar.visibility = GONE
-//        })
-//        viewModelHome.getRestaurantDetails(23, entity_type = "city" )
-//        viewModelHome.showRestaurant.observe(this, Observer {
-//            adapter.getLocationData(it)
-//        })
+
+
     }
 
     private fun isLocationEnabled(): Boolean {
@@ -160,7 +150,15 @@ class MainActivity : AppCompatActivity() {
 
             longitude = mLastLocation.longitude
             Log.i("Current Longitude", "$longitude")
-            getCurrentLocation(latitude, longitude)
+//
+//            val bundle = Bundle()
+//            bundle.putDouble("latitude", latitude)
+//            bundle.putDouble("longitude",longitude)
+//            val fragobj = HomeScreen()
+//            fragobj.arguments = bundle
+//            val intent=Intent(this@MainActivity,HomeScreen::class.java)
+//                    intent.putExtra("latitude",latitude)
+//            getCurrentLocation(latitude, longitude)
         }
     }
 
@@ -170,17 +168,22 @@ class MainActivity : AppCompatActivity() {
             viewModel.currentLocation.observe(this, Observer {
                 location_name.text = it.locationSuggestions[0].name
                 entity_id = it.locationSuggestions[0].id
+                    Log.e("id",entity_id.toString())
 
-                val bundle = Bundle()
-                bundle.putInt("entityId", entity_id)
-                val fragobj = HomeScreen()
-                fragobj.arguments = bundle
-//            homeScreen.getRestaurantDetails(entity_id, enity_type)
-          })
+
+            })
+//            Log.e("entity", entity_id.toString())
+//            val bundle = Bundle()
+//            bundle.putInt("entityId", entity_id)
+//            val fragobj = HomeScreen()
+//            fragobj.setArguments(bundle)
+//            Log.e("entityid",entity_id.toString())
+
         } else
             Toast.makeText(this, "Internet Unavailable", Toast.LENGTH_SHORT).show()
     }
 
+   
 
 
 }
